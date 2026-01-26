@@ -1,0 +1,63 @@
+{
+	"name": "ebenezer-ejournal",
+	"version": "0.0.1",
+	"description": "Book 11ty Tuuftee by adamdjbrett.",
+	"type": "module",
+	"scripts": {
+		"build": "cross-env NODE_ENV=production eleventy",
+		"build-nocolor": "cross-env NODE_DISABLE_COLORS=1 npx @11ty/eleventy",
+		"build-ghpages": "npx @11ty/eleventy --pathprefix=/ebenezer-ejournal/",
+		"start": "npx @11ty/eleventy --serve --quiet",
+		"start-ghpages": "npx @11ty/eleventy --pathprefix=/ebenezer-ejournal/ --serve --quiet",
+		"debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy",
+		"debugstart": "cross-env DEBUG=Eleventy* npx @11ty/eleventy --serve --quiet",
+		"benchmark": "cross-env DEBUG=Eleventy:Benchmark* npx @11ty/eleventy"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/adamdjbrett/ebenezer-ejournal.git"
+	},
+	"author": {
+		"name": "Adam Dj Brett",
+		"email": "info@adamdjbrett.com",
+		"url": "https://adamdjbrett.com/"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": ">=22"
+	},
+	"homepage": "https://github.com/adamdjbrett/ebenezer-ejournal#readme",
+	"devDependencies": {
+		"@11ty/eleventy": "^3.1.2",
+		"@11ty/eleventy-navigation": "^1.0.5",
+		"@11ty/eleventy-plugin-rss": "^2.0.4",
+		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1",
+		"@11ty/eleventy-plugin-webc": "^0.11.2",
+		"@fullhuman/postcss-purgecss": "^7.0.2",
+		"clean-css": "^5.3.3",
+		"cross-env": "^10.1.0",
+		"js-yaml": "^4.1.1",
+		"markdown-it": "^14.1.0",
+		"markdown-it-attrs": "^4.3.1",
+		"purgecss": "^7.0.2",
+		"terser": "^5.44.1"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^7.1.0",
+		"@fortawesome/free-brands-svg-icons": "^7.1.0",
+		"@fortawesome/free-solid-svg-icons": "^7.1.0",
+		"axios": "^1.13.2",
+		"eleventy-plugin-toc": "^1.1.5",
+		"dotenv": "^17.2.3",
+		"slugify": "^1.6.6",
+		"zod": "^4.3.6",
+		"markdown-it": "^14.1.0",
+		"markdown-it-anchor": "^9.2.0",
+		"markdown-it-container": "^4.0.0",
+		"markdown-it-footnote": "^4.0.0",
+		"markdown-it-table-of-contents": "^0.8.0",
+		"zod-validation-error": "^5.0.0",
+		"pagefind": "^1.4.0",
+		"@zachleat/heading-anchors": "^1.0.3"
+	}
+}

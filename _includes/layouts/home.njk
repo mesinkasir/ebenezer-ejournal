@@ -1,0 +1,75 @@
+---
+layout: layouts/base.njk
+---
+<div class="journal-content">
+<article class="journal-entry">
+<h2 class="entry-title"><a href="{{page.url}}">{{title or page.title}}</a></h2>
+<div class="entry-meta">
+   
+{% if author %}
+    {% set authorKeys = author.split(',') %}
+
+    <div class="author-post-journal-grid">
+        {%- for authorKey in authorKeys %}
+            {% set trimmedKey = authorKey | trim %}
+            {% set currentAuthor = authors | findAuthorByKey(trimmedKey) %}
+            
+            <div class="author-post-journal-item">
+                {% if currentAuthor %}
+                    <div class="author-post-journal-flex">
+                        <div class="author-post-journal-image-box">
+                            <a href="/authors/{{ currentAuthor.key }}">
+                                <img src="{{ currentAuthor.image }}"
+                                     class="author-post-journal-img"
+                                     width="120" height="120"
+                                     alt="{{ currentAuthor.name }}"/>
+                            </a>
+                        </div>
+
+                        <div class="author-post-journal-info">
+                            <a href="/authors/{{ currentAuthor.key }}" class="author-post-journal-link">
+                                <span class="author-post-journal-label">AUTHOR</span>
+                                <h3 class="author-post-journal-name">{{ currentAuthor.name }}</h3>
+                                <p class="author-post-journal-bio">{{ currentAuthor.bio }}</p>
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="author-post-journal-fallback">
+                        <a href="/authors/{{ trimmedKey }}">{{ trimmedKey }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor -%}
+    </div>
+{% endif %}
+
+
+{% if tags %}
+<p class="entry-keywords">Keywords: 
+    {%- for tag in tags | filterTagList %}
+	{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+    <a href="{{ tagUrl }}" class="tags">{{ tag }}</a>{%- if not loop.last %}, {% endif %}
+{%- endfor %}
+</p>
+{% endif %}
+</div>
+{% if design.show_toc_on_page or design.show_toc_on_home %}
+<aside class="toc-container">
+  <h2>{{ design.toc | default("Table of Contents") }}</h2>
+  <nav>
+    {{ content | toc | safe }}
+  </nav>
+</aside>
+{% endif %}
+<heading-anchor>
+{{ content | safe }}
+</heading-anchor>
+{% if button1.text %}
+<div class="entry-actions">
+<a href="{{button1.url}}" class="btn btn-dark">{{button1.text}}</a>
+<a href="{{button2.url}}" class="btn btn-secondary">{{button2.text}}</a>
+</div>
+{% endif %}
+</article>
+</div>

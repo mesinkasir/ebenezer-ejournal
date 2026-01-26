@@ -1,0 +1,33 @@
+<button id="menu-toggle" class="menu-btn" aria-label="Open Menu">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</button>
+
+<nav id="side-nav" class="side-nav">
+    <button id="close-menu" class="close-btn" aria-label="Close Menu">&times;</button>
+    
+    <div class="nav-content">
+        <div class="search-box">
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+        </div>
+
+
+
+
+        <ul class="nav-links">
+            {% for item in design.sidebar.list %}
+            <li><a href="{{item.url}}">{{item.name}}</a></li>
+            {% endfor %}
+        </ul>
+
+        <div class="nav-footer">
+            <button id="theme-toggle">
+                <span class="mode-icon">🌓</span> 
+                <span class="mode-text">{{design.sidebar.themes_button}}</span>
+            </button>
+        </div>
+    </div>
+</nav>

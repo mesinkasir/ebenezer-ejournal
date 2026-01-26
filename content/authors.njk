@@ -1,0 +1,69 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: authors
+  size: 1
+  alias: currentAuthor
+  addAllPagesToCollections: true
+permalink: "/authors/{{ currentAuthor.key | slugify }}/"
+---
+
+<!-- Isi header dan konten sama persis seperti yang kamu punya -->
+<header class="journal-header" style="border: none; margin: 0; padding: 0;">
+    {% set authorKey = currentAuthor.key %}
+    {% set postsByAuthor = collections.all | byAuthor(authorKey) %}
+
+    <div class="header-main" style="border: none;">
+        <img class="author-avatar" src="{{ currentAuthor.image or metadata.image }}" alt="{{ currentAuthor.name }}" 
+             style="width: 150px; height: 150px; border-radius: 50%; border: 1px solid var(--border-color); object-fit: cover;">
+    </div>
+
+    <h2><a href="{{ page.url }}">{{ currentAuthor.name }}</a></h2>
+    <div class="text-center">{{ currentAuthor.description or currentAuthor.bio | md |safe }}</div>
+    <div class="text-center">{{ currentAuthor.article | md |safe }}</div>
+
+    <div class="entry-keywords">
+        {{ postsByAuthor.length }} Articles 
+        {% if currentAuthor.social %}
+        <div class="author-social">
+            {% for s in currentAuthor.social %}
+                <a href="{{ s.url }}" class="social-link none" target="_blank" rel="noopener"
+                   aria-label="{{ s.title | default('Social link') | escape }}">
+                    {% icon 'fab', s.icon, 'social-icon' %}
+                </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {% if currentAuthor.button %}
+    <div class="entry-actions" style="justify-content: center; margin-top: 1.5rem;">
+        {% for b in currentAuthor.button %}
+            <a href="{{ b.url }}" class="btn btn-dark">{{ b.title }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</header>
+
+<hr style="border: 0; border-top: 1px solid var(--border-color); margin: 3rem 0;">
+
+<div class="section-label">Selected Works</div>
+
+<div class="author-posts-grid">
+    {% if postsByAuthor.length %}
+        {% for b in postsByAuthor | reverse %}
+        <article class="post-card-minimal">
+            <div class="post-card-img-wrapper">
+                <a href="{{ b.url }}">
+                    <img src="{{ b.data.image or metadata.image }}" alt="{{ b.data.title }}">
+                </a>
+            </div>
+            <h3><a href="{{ b.url }}" class="none">{{ b.data.title }}</a></h3>
+            <p>{{ b.data.description }}</p>
+            <a href="{{ b.url }}" class="btn-link">Read More →</a>
+        </article>
+        {% endfor %}
+    {% else %}
+        <p class="tagline">No articles found.</p>
+    {% endif %}
+</div>

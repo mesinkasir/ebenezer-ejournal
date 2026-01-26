@@ -1,0 +1,43 @@
+---js
+{
+    pagination: {
+        data: "collections",
+        size: 1,
+        alias: "tag",
+        filter: ["all", "posts"]
+    },
+    eleventyExcludeFromCollections: true,
+    eleventyComputed: {
+        title: "Articles tagged: #{{ tag }}",
+        permalink: function(data) {
+            return `/tags/${this.slugify(data.tag)}/`;
+        }
+    }
+}
+---
+<article class="tag-archive">
+    <header>
+        <h1 class="content-title">Tagged: <span class="tag-accent">#{{ tag }}</span></h1>
+        {% set postslist = collections[ tag ] %}
+        <p class="subtitle">{{ postslist | length }} Article{{ 's' if postslist.length > 1 }} found.</p>
+    </header>
+
+    <hr class="section-divider">
+
+    <div class="posts-list-wrapper">
+        {% include "postslist.njk" %}
+    </div>
+
+    <footer class="archive-footer">
+        <a href="/tags/" class="back-link">
+            <i class="fas fa-arrow-left"></i> View all tags
+        </a>
+    </footer>
+</article>
+
+<style>
+    .tag-accent { color: var(--link-color); font-style: italic; }
+    .section-divider { border: 0; border-top: 1px double var(--border-color); margin: 2rem 0; }
+    .archive-footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color); }
+    .back-link { font-family: var(--font-sans); font-weight: bold; text-decoration: none; }
+</style>

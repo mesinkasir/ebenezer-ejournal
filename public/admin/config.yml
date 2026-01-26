@@ -1,0 +1,135 @@
+backend:
+  name: github
+  repo: username/repo-name
+  branch: main
+  site_domain: https://ebenezer.net
+  client_id: xxx  
+  base_url: https://api.sveltia.org
+
+media_folder: "public/assets/img"
+public_folder: "/assets/img"
+
+collections:
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - title: "Home Page"
+        name: "home"
+        file: "content/index.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - label: "Button 1"
+            name: "button1"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+          - label: "Button 2"
+            name: "button2"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+          - { label: "Tags", name: "tags", widget: "list" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "pages_collection"
+    label: "Static Pages"
+    label_singular: "Page"
+    folder: "content/page"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Permalink", name: "permalink", widget: "string", hint: "Contoh: /about/" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "blog"
+    label: "Articles"
+    label_singular: "Article"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Authors", name: "author", widget: "string", hint: "Gunakan key dari data authors, pisahkan dengan koma (contoh: john-dhoe, jon-jones)" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "data"
+    label: "Global Data"
+    editor:
+      preview: false
+    files:
+      - title: "Authors List"
+        name: "authors"
+        file: "_data/authors.yaml"
+        fields:
+          - label: "Authors"
+            name: "authors"
+            widget: "list"
+            summary: '{{name}}'
+            allow_add: true
+            fields:
+              - { label: "Key", name: "key", widget: "string", hint: "Jangan pakai spasi (contoh: john-doe)" }
+              - { label: "Full Name", name: "name", widget: "string" }
+              - { label: "Biography", name: "bio", widget: "text" }
+              - { label: "Article", name: "article", widget: "text" }
+              - { label: "Profile Image", name: "image", widget: "image" }
+              - label: "Social Links"
+                name: "social"
+                widget: "list"
+                fields:
+                  - { label: "Platform Title", name: "title", widget: "string" }
+                  - { label: "Icon Class", name: "icon", widget: "string", hint: "Contoh: fa-globe" }
+                  - { label: "URL", name: "url", widget: "string" }
+              - label: "Custom Buttons"
+                name: "button"
+                widget: "list"
+                fields:
+                  - { label: "Button Title", name: "title", widget: "string" }
+                  - { label: "URL", name: "url", widget: "string" }
+
+      - title: "Design & Navbar"
+        name: "design"
+        file: "_data/design.yaml"
+        fields:
+          - label: "Navbar Settings"
+            name: "navbar"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Logo Path", name: "logo", widget: "image" }
+              - { label: "Left Text", name: "left_text", widget: "string" }
+              - { label: "Right Text", name: "right_text", widget: "string" }
+          - label: "Sidebar Settings"
+            name: "sidebar"
+            widget: "object"
+            fields:
+              - { label: "Search Placeholder", name: "search", widget: "string" }
+              - { label: "Theme Switch Text", name: "themes_button", widget: "string" }
+          - { label: "TOC Title", name: "toc", widget: "string" }
+          - { label: "Show TOC on Articles", name: "show_toc_on_article", widget: "boolean" }
+          - { label: "Footer Text", name: "footer", widget: "object", fields: [{label: "Copyright", name: "text", widget: "string"}]}
+
+      - title: "Site Metadata"
+        name: "metadata"
+        file: "_data/metadata.yaml"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Base URL", name: "url", widget: "string" }
+          - { label: "Language", name: "language", widget: "string" }
+          - label: "Social Metadata"
+            name: "metasocial"
+            widget: "object"
+            fields:
+              - { label: "Facebook URL", name: "facebook", widget: "string" }
+              - { label: "Twitter/X URL", name: "twitter", widget: "string" }

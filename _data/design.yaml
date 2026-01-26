@@ -1,0 +1,41 @@
+navbar: 
+  title: "Ebenezer"
+  subtitle: "A SUPPLEMENTAL E-JOURNAL FOR PUBLIC THEOLOGY & PUBLIC WITNESS"
+  logo: "/assets/img/ebenezer-vert.png"
+  left_text: "EST. 2026"
+  right_text: "ISSN: 0000-123X"
+  list:
+    - name: "Home"
+      url: "/"
+    - name: "Authors"
+      url: "/authors/"
+    - name: "Articles"
+      url: "/articles/"
+    - name: "About"
+      url: "/about/"
+    - name: "Contact"
+      url: "/contact/"
+
+sidebar:
+  search: "Search Articles.."
+  list:
+    - name: "Home"
+      url: "/"
+    - name: "Authors"
+      url: "/authors/"
+    - name: "Articles"
+      url: "/articles/"
+    - name: "About"
+      url: "/about/"
+    - name: "Contact"
+      url: "/contact/"
+  themes_button: Switch Appearance
+
+toc: Table of Contents
+show_toc_on_article: true
+show_toc_on_page: false
+show_toc_on_home: false
+
+
+footer:
+  text: "© Ebenezer. All rights reserved."

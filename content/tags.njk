@@ -1,0 +1,64 @@
+---
+layout: layouts/base.njk
+title: Tags Index
+---
+<article class="tags-index">
+    <header>
+        <h1 class="content-title">Explore by Topics</h1>
+        <p class="subtitle">Alphabetical index of all subjects discussed in Ebenezer.</p>
+    </header>
+
+    <div class="tags-cloud">
+        {% for tag in collections | getKeys | filterTagList | sortAlphabetically %}
+            {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+            {% set count = collections[tag] | length %}
+            
+            <a href="{{ tagUrl }}" class="tag-card">
+                <span class="tag-name">{{ tag }}</span>
+                <span class="tag-count">{{ count }}</span>
+            </a>
+        {% endfor %}
+    </div>
+</article>
+
+<style>
+    .tags-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 3rem;
+    }
+
+    .tag-card {
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+        background: var(--bg-alt, #f4f4f4);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        text-decoration: none;
+        color: var(--text-color);
+        transition: all 0.2s ease;
+    }
+
+    .tag-card:hover {
+        border-color: var(--link-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .tag-name {
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .tag-count {
+        margin-left: 10px;
+        padding-left: 10px;
+        border-left: 1px solid var(--border-color);
+        font-size: 0.8rem;
+        opacity: 0.7;
+        font-variant-numeric: tabular-nums;
+    }
+</style>

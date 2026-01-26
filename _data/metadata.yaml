@@ -1,0 +1,18 @@
+title: "Ebenezer"
+description: "A SUPPLEMENTAL E-JOURNAL FOR PUBLIC THEOLOGY & PUBLIC WITNESS"
+url: "http://localhost:8080"
+language: "en"
+locale: "en_US"
+favicon: "/assets/img/ebenezer-vert.png"
+image: "/assets/img/ebenezer-vert.png"
+
+author:
+  name: "Ebenezer"
+  email: "info@ebenezer.org"
+  ur;: "https://author.com"
+
+metasocial: 
+  facebook: "https://facebook.com/user"
+  twitter: "https://x.com/user"
+  tweet_user: "@user"
+

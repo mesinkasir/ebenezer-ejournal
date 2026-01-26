@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="{{ metadata.language }}">
+<head>
+{% include "partials/seo.njk" %}
+{%- css %}{% include "css/index.css" %}{% endcss %}<style>{% getBundle "css" %}</style>
+</head>
+<body>
+<a id="skip-link" href="#main-content">Skip to main content</a>
+{% include "partials/sidebar.njk" %}
+{% include "partials/navbar.njk" %}
+<main class="container" id="main-content">{{ content | safe }}</main>
+{% include "partials/footer.njk" %}
+<script type="module" src="{% getBundleFileUrl "js" %}"></script>
+<script src="/assets/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+---
+
+<header class="journal-header">
+    <h2><a href="{{ page.url }}">Authors</a></h2>
+    <p class="tagline text-center">Meet our contributors</p>
+</header>
+
+<div class="authors-grid-container">
+    <section class="authors-grid">
+        {% for a in authors %}
+            {% set authorPosts = collections.all | byAuthor(a.key) %}
+            
+            <article class="author-card">
+                <a href="/authors/{{ a.key | slugify }}/" class="none">
+                    <img src="{{ a.image or metadata.image }}" alt="{{ a.name }}" class="author-card-avatar">
+                </a>
+                <div class="author-card-info">
+                    <h3><a href="/authors/{{ a.key | slugify }}/">{{ a.name }}</a></h3>
+                    <p>{{ a.description or a.bio }}</p>
+                    <span class="post-count">{{ authorPosts.length }} Articles</span>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+</div>

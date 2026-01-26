@@ -1,0 +1,99 @@
+---
+layout: layouts/base.njk
+---
+<article>
+    <header>
+        <header class="list-header">
+    <h2><a href="{{ page.url }}">{{ title }}</a></h2>
+    <p class="tagline">{{ description or subtitle }}</p>
+</header>
+   
+        {% if author %}
+            {% set authorKeys = author.split(',') %}
+            <div class="article-meta">
+                {% for authorKey in authorKeys %}
+                    {% set trimmedKey = authorKey | trim %}
+                    {% set currentAuthor = authors | findAuthorByKey(trimmedKey) %}
+                    
+                    <div class="author-info">
+                        {% if currentAuthor and currentAuthor.image %}
+                            <a href="/authors/{{ currentAuthor.key }}" title="{{ currentAuthor.name }}"><img src="{{ currentAuthor.image }}" 
+                                 alt="{{ currentAuthor.name }}" 
+                                 class="author-avatar">
+                        {% else %}
+                            <a href="/authors/{{ currentAuthor.key }}" title="{{ currentAuthor.name }}"><img src="https://ui-avatars.com/api/?name={{ trimmedKey | replace(' ', '+') }}&background=random" 
+                                 alt="Author" 
+                                 class="author-avatar"></a>
+                        {% endif %}
+                        
+                        <div class="author-text">
+                            <span class="author-name"><a href="/authors/{{ currentAuthor.key }}" class="none">{{ currentAuthor.name or trimmedKey }} 
+                                <!-- <br/><small>{{ currentAuthor.bio }}</small> -->
+                                </a></span>
+                            {% if currentAuthor.social %}
+                            <span class="author-links">
+                            {% for s in currentAuthor.social %}<a href="{{ s.url }}" class="social-link" target="_blank" rel="noopener" aria-label="{{ s.title | default('Social link') | escape }}">{% icon 'fab', s.icon, 'social-icon' %}</a>{% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+            </div>
+        {% else %}
+            <div class="article-meta">
+                <img src="https://ui-avatars.com/api/?name=Author&background=random" alt="Author" class="author-avatar">
+                <div class="author-text">
+                    <span class="author-name">Anonymous</span>
+                </div>
+                <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+            </div>
+        {% endif %}
+    </header>
+    {% if design.show_toc_on_article %}
+<div class="toc-container">
+  <h2>{{design.toc}}</h2>
+  {{ content | toc | safe }}
+</div>
+{% endif %}
+    {{ content | safe }}
+
+    {% set previousPost = collections.posts | getPreviousCollectionItem %}
+    {% set nextPost = collections.posts | getNextCollectionItem %}
+    <footer class="article-footer">
+        <hr>
+        
+        {% if tags %}
+        <h3 class="section-label">Tags</h3>
+            {% for tag in tags | filterTagList %}
+                {% set tagUrl = '/tags/' + (tag | slugify) + '/' %}
+                <a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if references %}
+        <h3 class="section-label">References & Notes</h3>
+        <ol class="footer-notes">
+            {% for ref in references %}
+                <li id="fn{{ loop.index }}">{{ ref }}</li>
+            {% endfor %}
+        </ol>
+        {% endif %}
+
+        {% if nextPost or previousPost %}
+        <nav class="post-nav">
+            {% if previousPost %}
+            <div class="nav-prev">
+                <span class="nav-label">Previous Article</span>
+                <a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a>
+            </div>
+            {% endif %}
+            {% if nextPost %}
+            <div class="nav-next">
+                <span class="nav-label">Next Article</span>
+                <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
+            </div>
+            {% endif %}
+        </nav>
+        {% endif %}
+    </footer>
+</article>
