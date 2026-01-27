@@ -36,7 +36,9 @@ layout: layouts/base.njk
             <aside class="contact-sidebar">
                {{content | safe }}
                 <div class="social-links">
-                    {% for s in social %}<a href="{{ s.url }}">{% icon "fab", s.icon %} {{ s.title }}</a><br>{% endfor %}
+                    {% for s in social %}<a href="{{ s.url }}"
+                    class="none socialist" target="_blank" rel="noopener noreferrer"
+                    >{% icon "fab", s.icon %} {{ s.title }}</a><br>{% endfor %}
                 </div>
             </aside>
         </section>

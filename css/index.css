@@ -1,7 +1,7 @@
 :root {
-    --bg-color: #fffff8;
+    --bg-color: #ffffff;
 	--text-color: #111111;
-    --link-color: #0476d0;
+    --link-color: #c44601;
     --heading-font: 'Optima', 'Segoe UI', Tahoma, sans-serif;
     --body-font: 'Et-Book', 'Palatino', 'Georgia', serif;
     --sidebar-width: 260px;
@@ -15,14 +15,20 @@
 }
 
 [data-theme="dark"] {
-    --bg-color: #151515;
-    --text-color: #e0e0e0;
-    --link-color: #58a6ff;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --muted-text: #a0a0a0;
+    --bg-color: #151515 !important;
+    --text-color: #ffffff !important;
+    --link-color: #c44601 !important;
+    --border-color: rgba(255, 255, 255, 0.1) !important;
+    --muted-text: #a0a0a0 !important;
+    --modal-bg: rgba(0, 0, 0, 0.8) !important;
+    --modal-content-bg: #2a2a2a !important;
 }
+
 * { box-sizing: border-box; }
 
+.no-transition, .no-transition * {
+    transition: none !important;
+}
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -812,8 +818,8 @@ img { max-width: 100%; height: auto; display: block; }
 .journal-nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
     display: flex;
-    justify-content: center;
     gap: 30px;
 }
 
@@ -822,8 +828,29 @@ img { max-width: 100%; height: auto; display: block; }
     color: var(--text-color);
     font-weight: bold;
     font-size: 0.9rem;
+    white-space: nowrap;
 }
 
+.journal-nav a:hover {
+    color: var(--link-color);
+}
+
+@media (max-width: 768px) {
+    .journal-nav ul {
+        gap: 20px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .journal-nav ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    .journal-nav a {
+        font-size: 0.85rem;
+    }
+}
 /* Dark Mode Logo Fix */
 [data-theme="dark"] .journal-logo img {
     filter: invert(1);
@@ -1048,7 +1075,7 @@ h1, h2, h3, p {
     margin: 0;
     text-align: center;
 }
-a {color: var(--text-color); font-weight: bold;}
+a {color: var(--link-color); font-weight: bold;}
 a.tags {color: var(--muted-text); font-weight: normal; text-decoration: none;}
 .none  {text-decoration: none;}
 
@@ -1520,3 +1547,10 @@ a.tags {color: var(--muted-text); font-weight: normal; text-decoration: none;}
     color: var(--text-color);
     opacity: 0.6;
 }
+.pagefind-ui__search-input::placeholder {
+    color: var(--placeholder-color, #999) !important;
+    opacity: 1 !important;
+}
+
+.socialist {color: var(--text-color) !important;}
+.socialist:hover {color: var(--link-color) !important;}
