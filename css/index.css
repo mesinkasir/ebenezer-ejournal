@@ -822,6 +822,7 @@ img { max-width: 100%; height: auto; display: block; }
     display: flex;
     justify-content: center;
     align-items: center;
+	padding-bottom: 4px;
     gap: 30px;
     flex-wrap: wrap;
 }
