@@ -804,12 +804,14 @@ img { max-width: 100%; height: auto; display: block; }
 .journal-tagline {
     border-top: 2px solid var(--text-color);
     border-bottom: 2px solid var(--text-color);
+	text-align: center;
     margin: 1rem 0;
     padding: 1rem 0;
 }
 
 .journal-tagline p {
     font-family: var(--heading-font);
+	text-align: center;
     font-size: 1.4rem;
     letter-spacing: 4px;
     margin: 0;
