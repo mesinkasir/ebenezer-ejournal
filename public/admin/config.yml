@@ -61,6 +61,23 @@ collections:
       - { label: "Authors", name: "author", widget: "string", hint: "Gunakan key dari data authors, pisahkan dengan koma (contoh: john-dhoe, jon-jones)" }
       - { label: "Tags", name: "tags", widget: "list" }
       - { label: "Body", name: "body", widget: "markdown" }
+  - name: "sponsors"
+    label: "Sponsors"
+    files:
+      - title: "Sponsors"
+        name: "sponsors"
+        file: "_data/sponsors.yaml"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - label: "Sponsor List"
+            name: "list"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Alt Text", name: "alt", widget: "string" }
 
   - name: "data"
     label: "Global Data"
@@ -95,7 +112,6 @@ collections:
                 fields:
                   - { label: "Button Title", name: "title", widget: "string" }
                   - { label: "URL", name: "url", widget: "string" }
-
       - title: "Design & Navbar"
         name: "design"
         file: "_data/design.yaml"
